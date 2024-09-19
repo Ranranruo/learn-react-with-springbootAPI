@@ -5,6 +5,10 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.zerock.apiserver.domain.Todo;
 
 import java.time.LocalDate;
@@ -26,14 +30,16 @@ public class TodoRepositoryTests {
 
     // todo insert 테스트
     @Test
-    public void testInsert(){
-        Todo todo = Todo.builder()
-                .title("Title")
-                .content("Content...")
-                .dueDate(LocalDate.of(2023, 12, 30))
-                .build();
-        Todo result = todoRepository.save(todo);
-        System.out.println(result.toString());
+    public void testInsert() {
+        for (int i = 0; i < 100; i++) {
+            Todo todo = Todo.builder()
+                    .title("Title" + i)
+                    .content("Content..." + i)
+                    .dueDate(LocalDate.of(2023, 12, 30))
+                    .build();
+            Todo result = todoRepository.save(todo);
+            System.out.println(result.toString());
+        }
     }
 
     // todo get 테스트
@@ -50,7 +56,7 @@ public class TodoRepositoryTests {
 
     // todo update 테스트
     @Test
-    public void testUpdate(){
+    public void testUpdate() {
         // 1. 기존 데이터 로딩
         Long tno = 1L;
 
@@ -65,5 +71,14 @@ public class TodoRepositoryTests {
         Todo Updated = todoRepository.save(todo);
 
         System.out.println(Updated.toString());
+    }
+
+    @Test
+    public void testPaging() {
+        Pageable pageable = PageRequest.of(1, 10, Sort.by("tno").descending());
+        Page<Todo> result = todoRepository.findAll(pageable);
+
+        System.out.println(result.getContent());
+
     }
 }
