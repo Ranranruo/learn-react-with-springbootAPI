@@ -1,7 +1,6 @@
 package org.zerock.apiserver.service;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j;
 import org.springframework.stereotype.Service;
 import org.zerock.apiserver.domain.Todo;
 import org.zerock.apiserver.dto.TodoDTO;
@@ -31,11 +30,18 @@ public class TodoServiceImpl implements TodoService{
 
     @Override
     public void modify(TodoDTO dto) {
+        Optional<Todo> result = todoRepository.findById(dto.getTno());
+        Todo todo = result.orElseThrow();
+        todo.setTitle(dto.getTitle());
+        todo.setContent(dto.getContent());
+        todo.setComplete(dto.isComplete());
+        todo.setDueDate(dto.getDueDate());
 
+        todoRepository.save(todo);
     }
 
     @Override
     public void remove(Long tno) {
-
+        todoRepository.deleteById(tno);
     }
 }
