@@ -1,11 +1,17 @@
 package org.zerock.apiserver.service;
 
 import lombok.RequiredArgsConstructor;
+import org.hibernate.query.Page;
 import org.springframework.stereotype.Service;
 import org.zerock.apiserver.domain.Todo;
+import org.zerock.apiserver.dto.PageRequestDTO;
+import org.zerock.apiserver.dto.PageResponseDTO;
 import org.zerock.apiserver.dto.TodoDTO;
 import org.zerock.apiserver.repository.TodoRepository;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -43,5 +49,15 @@ public class TodoServiceImpl implements TodoService{
     @Override
     public void remove(Long tno) {
         todoRepository.deleteById(tno);
+    }
+
+    @Override
+    public PageResponseDTO<TodoDTO> getList(PageRequestDTO pageRequestDTO) {
+        String[] arr = new String[10];
+        List<String> list = new ArrayList<>();
+        // JPA
+        // Page<Todo> result = todoRepository.search1(pageRequestDTO);
+
+        return null;
     }
 }

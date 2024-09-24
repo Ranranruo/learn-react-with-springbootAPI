@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.zerock.apiserver.domain.Todo;
+import org.zerock.apiserver.dto.PageRequestDTO;
 
 import java.time.LocalDate;
 import java.util.Optional;
@@ -80,5 +81,13 @@ public class TodoRepositoryTests {
 
         System.out.println(result.getContent());
 
+    }
+    @Test
+    public void pagenation(){
+        PageRequestDTO pageRequestDTO = PageRequestDTO.builder().
+                build();
+        pageRequestDTO.setPage(2);
+        var result = todoRepository.search1(pageRequestDTO);
+        System.out.println(result);
     }
 }
