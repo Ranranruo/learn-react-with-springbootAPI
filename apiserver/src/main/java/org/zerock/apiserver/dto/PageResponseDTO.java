@@ -23,8 +23,9 @@ public class PageResponseDTO<E> {
         this.pageRequestDTO = pageRequestDTO;
         this.totalCount = (int)total;
 
+
         // 끝 페이지
-        int end = (int) Math.ceil(pageRequestDTO.getPage() / 10.0) * 10;
+        int end = (int) Math.ceil((pageRequestDTO.getPage() / 10.0) * 10);
         int start = end - 9;
 
         // 진짜 마지막 페이지

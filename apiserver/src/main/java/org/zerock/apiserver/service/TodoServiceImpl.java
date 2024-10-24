@@ -52,12 +52,22 @@ public class TodoServiceImpl implements TodoService{
     }
 
     @Override
-    public PageResponseDTO<TodoDTO> getList(PageRequestDTO pageRequestDTO) {
-        String[] arr = new String[10];
-        List<String> list = new ArrayList<>();
-        // JPA
-        // Page<Todo> result = todoRepository.search1(pageRequestDTO);
-
+    public PageResponseDTO<TodoDTO> getList(PageRequestDTO pageRequestDTO){
+        Optional<List<Todo>> result = todoRepository.search1(pageRequestDTO);
+        System.out.println("getlist");
+        System.out.println(pageRequestDTO);
+        System.out.println(result.isPresent());
+        int totalCount = todoRepository.getTotalPageCount();
+        if(result.isPresent()){
+            List<Todo> todoList = result.get();
+            List<TodoDTO> todoDTOList = new ArrayList<TodoDTO>();
+            for(int i = 0; i < todoList.size(); i++){
+                todoDTOList.add(entityToDTO(todoList.get(i)));
+            }
+            PageResponseDTO<TodoDTO> pageResponseDTO = new PageResponseDTO<TodoDTO>(todoDTOList, pageRequestDTO, totalCount);
+            System.out.println(pageResponseDTO);
+            return pageResponseDTO;
+        }
         return null;
     }
 }
