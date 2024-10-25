@@ -1,6 +1,7 @@
 package org.zerock.apiserver.service;
 
 import jakarta.transaction.Transactional;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.zerock.apiserver.domain.Todo;
 import org.zerock.apiserver.dto.PageRequestDTO;
 import org.zerock.apiserver.dto.PageResponseDTO;
@@ -13,7 +14,7 @@ public interface TodoService {
     void modify(TodoDTO dto);
     void remove(Long tno);
 
-    PageResponseDTO<TodoDTO> getList(PageRequestDTO pageRequestDTO);
+    PageResponseDTO<TodoDTO> getList(PageRequestDTO pageRequestDTO) throws MethodArgumentNotValidException;
 
     default TodoDTO entityToDTO(Todo todo) {
         TodoDTO todoDTO = TodoDTO.builder()
