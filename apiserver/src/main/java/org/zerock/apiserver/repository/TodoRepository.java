@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface TodoRepository extends JpaRepository<Todo, Long> {
-    @Query(value = "SELECT * FROM todo LIMIT :#{#pageRequestDTO.size} OFFSET ((:#{#pageRequestDTO.page} - 1) * :#{#pageRequestDTO.size})", nativeQuery = true)
+    @Query(value = "SELECT * FROM todo ORDER BY due_date DESC, tno DESC LIMIT :#{#pageRequestDTO.size} OFFSET ((:#{#pageRequestDTO.page} - 1) * :#{#pageRequestDTO.size})", nativeQuery = true)
     Optional<List<Todo>> search1(@Param("pageRequestDTO") PageRequestDTO pageRequestDTO);
 
     @Query(value = "SELECT COUNT(*) FROM todo", nativeQuery = true)
