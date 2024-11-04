@@ -33,6 +33,7 @@ public class TodoController {
     @PostMapping("/")
     public Map<String, Long> register(@RequestBody TodoDTO todoDTO){
         Long tno = todoService.register(todoDTO);
+        System.out.println(tno);
         return Map.of("tno", tno);
     }
 

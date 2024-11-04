@@ -12,7 +12,6 @@ const Main = lazy(()=> import("../pages/MainPage"));
 const About = lazy(()=> import("../pages/AboutPage"));
 const TodoIndex = lazy(()=> import("../pages/todo/IndexPage"));
 
-
 // Router 셋팅
 const root = createBrowserRouter([
     {

@@ -14,3 +14,20 @@ export const getList = async (pageParams) => {
     const res = await axios.get(`${prefix}/list`, {params:{page, size}});
     return res.data;
 }
+
+export const postAdd = async (todoObj) => {
+    // JSON.stringify(obj) => JSON문자열
+    const res = await axios.post(`${prefix}/`, todoObj);
+    console.log(res.data);
+    return res.data;
+}
+
+export const deleteOne = async (tno) => {
+    const res = await axios.delete(`${prefix}/${tno}`)
+    return res.data
+}
+
+export const putOne = async (todo) => {
+    const res = await axios.put(`${prefix}/${todo.tno}`, todo)
+    return res.data
+}
