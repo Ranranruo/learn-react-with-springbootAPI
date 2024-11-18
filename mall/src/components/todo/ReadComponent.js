@@ -25,7 +25,7 @@ const ReadComponent = ({tno}) => {
         <div className="border-2 border-sky-200 mt-10 m-2 p-4">
             {makeDiv('Tno', todo.tno)}
             {makeDiv('Title', todo.title)}
-            {makeDiv('content', todo.content)}
+            {makeDiv('Content', todo.content)}
             {makeDiv('DueDate', todo.dueDate)}
             {makeDiv('Complete', todo.complete ? 'Complete' : 'Not Yet')}
             {/* buttons.........start */}

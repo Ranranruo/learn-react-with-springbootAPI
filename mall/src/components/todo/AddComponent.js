@@ -5,7 +5,7 @@ import useCustomMove from "../../hooks/useCustomMove";
 
 const initState = {
     title: '',
-    writer: '',
+    content: '',
     dueDate: ''
 }
 
@@ -49,11 +49,11 @@ const AddComponent = (props) => {
             </div>
             <div className="flex justify-center">
                 <div className="relative mb-4 flex w-full flex-wrap items-stretch">
-                    <div className="w-1/5 p-6 text-right font-bold">WRITER</div>
+                    <div className="w-1/5 p-6 text-right font-bold">CONTENT</div>
                     <input className="w-4/5 p-6 rounded-r border border-solid border-neutral-500 shadow-md"
-                           name="writer"
+                           name="content"
                            type={'text'}
-                           value={todo.writer}
+                           value={todo.content}
                            onChange={handleChangeTodo}>
                     </input>
                 </div>
